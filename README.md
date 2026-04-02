@@ -33,12 +33,14 @@
 
 ### 如果有有趣的事情，或者你对我在做/计划做的事情感兴趣，欢迎联系 lenocai@foxmail.com :)
 
-### 你也可以玩一玩我用Cursor写的的贪吃蛇小游戏 https://Lineus.github.io/SnakeGame/
-- 贪吃蛇排行榜（排行榜还是手动更新，如果想上榜得发我邮箱）
-- 1.SixPigs
-<img src="assets/images/score1.png" alt="高分截图" width="300" height="300">
-- 2.豪闯天下
-<img src="assets/images/score2.png" alt="高分截图" width="300" height="300">
+### 你也可以玩一玩我用Cursor写的的贪吃蛇小游戏
+
+[SnakeGame](https://Lineus.github.io/SnakeGame/)    
+贪吃蛇排行榜（排行榜还是手动更新，如果想上榜得发我邮箱）    
+1.SixPigs     
+<img src="assets/images/score1.png" alt="高分截图" width="300" height="300">   
+2.豪闯天下    
+<img src="assets/images/score2.png" alt="高分截图" width="300" height="300">    
 
 <picture>
   <!-- 深色主题专用效果 -->
