@@ -32,6 +32,8 @@
 ### 我参加过的这些项目虽然杂，但是让我看见了自己的可能性。
 
 ### 如果有有趣的事情，或者你对我在做/计划做的事情感兴趣，欢迎联系 lenocai@foxmail.com :)
+
+### 你也可以玩一玩我用Cursor写的的贪吃蛇小游戏 https://Lineus.github.io/SnakeGame/
 <picture>
   <!-- 深色主题专用效果 -->
   <source media="(prefers-color-scheme: dark)" srcset="https://pixel-profile.vercel.app/api/github-stats?username=Lineus&screen_effect=false&theme=blue_chill">
