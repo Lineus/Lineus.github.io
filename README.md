@@ -6,11 +6,11 @@
 - 一辆智能小车的机械设计、PCB绘制和STM32编程
 - 桌面软件Lidesk的独立开发
 ### 我计划开展的项目
-- 制作一款桌面机器人
+- 一款桌面机器人
 ### 我接触过的语言（按熟练程度排序）
 - Python
 - C/C++
-- HTML
+- HTML/CSS
 - JavaScript
 - Dart
 ### 我会使用的设计类软件（按熟练程度排序）
@@ -19,7 +19,10 @@
 - LCEDA
 - NX
 - Unity Hub
-## 如果有有趣的项目，欢迎找我 :)
+### 我喜欢做的其他事情
+- 打架子鼓
+- 喝啤酒
+## 如果有有趣的事情，或者你对我在做/计划做的事情感兴趣，欢迎联系 :)
 <picture>
   <!-- 深色主题专用效果 -->
   <source media="(prefers-color-scheme: dark)" srcset="https://pixel-profile.vercel.app/api/github-stats?username=Lineus&screen_effect=false&theme=blue_chill">
