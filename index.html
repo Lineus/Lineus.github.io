@@ -165,30 +165,23 @@
         </section>
     </main>
 
-    <!-- 页脚统计 -->
+    <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
             <div class="stats-container">
-                <!-- GitHub 统计 -->
-                <div class="stat-item github-stats">
-                    <picture>
-                        <source media="(prefers-color-scheme: dark)" 
-                                srcset="https://pixel-profile.vercel.app/api/github-stats?username=Lineus&screen_effect=false&theme=blue_chill">
-                        <img alt="GitHub Stats" 
-                             src="https://pixel-profile.vercel.app/api/github-stats?username=Lineus&theme=summer">
-                    </picture>
-                </div>
-                
                 <!-- 访客统计 -->
                 <div class="stat-item visitor-count">
-                    <img src="https://komarev.com/ghpvc/?username=Lineus&color=blue&style=flat-square&label=Visitors" 
-                         alt="Visitor Count">
+                    <img src="https://api.visitorbadge.io/api/combined?path=Lineus.github.io&countColor=%232563eb&style=flat-square&label=visitors" 
+                         alt="Visitor Count"
+                         onerror="this.src='https://komarev.com/ghpvc/?username=Lineus&color=2563eb&style=flat-square&label=visitors'">
                 </div>
             </div>
             <p class="copyright">© 2026 Linus. Made with ❤️</p>
         </div>
     </footer>
 
+    <!-- Markdown 渲染库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="/assets/js/main.js"></script>
 </body>
 </html>
