@@ -6,15 +6,24 @@
     <title>Linus's Homepage</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- 内联主题脚本：在页面渲染前立即应用保存的主题，防止闪烁 -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme') || 'dark';
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- 主题切换按钮 -->
-    <button class="theme-toggle" id="themeToggle" aria-label="切换深色/浅色模式" title="切换深色/浅色模式">🌙</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="切换深色/浅色模式" title="切换深色/浅色模式" onclick="toggleTheme()">🌙</button>
 
     <!-- 头部区域 -->
     <header class="header">
         <div class="container">
-            <h1 class="title">哈喽，我是一名新手开发者</h1>
+            <h1 class="title">哈喽，我是Linus</h1>
             <p class="subtitle">欢迎来我的主页看看 :)</p>
         </div>
     </header>
@@ -184,5 +193,22 @@
     <!-- Markdown 渲染库 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="/assets/js/main.js"></script>
+    <!-- 内联主题切换函数 -->
+    <script>
+        function toggleTheme() {
+            var html = document.documentElement;
+            var btn = document.getElementById('themeToggle');
+            var current = html.getAttribute('data-theme');
+            if (current === 'light') {
+                html.removeAttribute('data-theme');
+                if (btn) { btn.innerHTML = '🌙'; btn.title = '切换浅色模式'; }
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                if (btn) { btn.innerHTML = '☀️'; btn.title = '切换深色模式'; }
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </body>
 </html>
