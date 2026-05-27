@@ -1,5 +1,8 @@
 // 页面加载完成后的初始化
 document.addEventListener('DOMContentLoaded', function() {
+    // 主题初始化（最先执行，避免闪烁）
+    initTheme();
+    
     // 滚动动画
     initScrollAnimation();
     
@@ -12,6 +15,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // 拦截文章链接，实现 Markdown 渲染
     initArticleLinks();
 });
+
+// ==================== 主题切换 ====================
+
+// 初始化主题
+function initTheme() {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+    
+    // 从 localStorage 读取保存的主题，默认深色
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+    
+    // 点击切换
+    toggleBtn.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
+
+// 应用主题
+function applyTheme(theme) {
+    const toggleBtn = document.getElementById('themeToggle');
+    
+    if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '☀️';
+            toggleBtn.setAttribute('title', '切换深色模式');
+        }
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '🌙';
+            toggleBtn.setAttribute('title', '切换浅色模式');
+        }
+    }
+}
 
 // 滚动动画 - 元素进入视口时淡入
 function initScrollAnimation() {
