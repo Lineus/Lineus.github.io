@@ -25,6 +25,7 @@
         <div class="container">
             <h1 class="title">哈喽，我是Linus</h1>
             <p class="subtitle">欢迎来我的主页看看 :)</p>
+            <p class="hero-quote"><span id="typewriter"></span><span class="cursor-blink" id="typingCursor">|</span></p>
         </div>
     </header>
 
@@ -209,6 +210,32 @@
                 localStorage.setItem('theme', 'light');
             }
         }
+    </script>
+    <!-- 打字机动效 -->
+    <script>
+        (function() {
+            var text = "生命这么脆弱，联结这么脆弱，理应尽可能地热烈。理应去在任何未知的永别前珍惜所有的灵魂，珍惜身边的每一个人，让每一个瞬间变得热烈，去了解他们，让分别好歹没那么空虚。";
+            var el = document.getElementById('typewriter');
+            var cursor = document.getElementById('typingCursor');
+            var i = 0;
+            var speed = 60; // 毫秒/字，稍微快一点
+
+            function type() {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // 打字完毕，光标开始闪烁
+                    cursor.classList.add('active');
+                }
+            }
+
+            // 页面加载后稍等 0.3 秒开始打字
+            if (el) {
+                setTimeout(type, 300);
+            }
+        })();
     </script>
 </body>
 </html>
