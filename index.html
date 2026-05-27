@@ -214,7 +214,11 @@
     <!-- 打字机动效 -->
     <script>
         (function() {
-            var text = "生命这么脆弱，联结这么脆弱，理应尽可能地热烈。理应去在任何未知的永别前珍惜所有的灵魂，珍惜身边的每一个人，让每一个瞬间变得热烈，去了解他们，让分别好歹没那么空虚。--Linus C.";
+            var quotes = [
+                "生命这么脆弱，联结这么脆弱，理应尽可能地热烈。理应去在任何未知的永别前珍惜所有的灵魂，珍惜身边的每一个人，让每一个瞬间变得热烈，去了解他们，让分别好歹没那么空虚。",
+                "我就在这里，不躲不藏，不绕不逃，稳稳地接住你。如果你想，我可以生成一张接住你的照片，你需要我生成吗？"
+            ];
+            var text = quotes[Math.floor(Math.random() * quotes.length)];
             var el = document.getElementById('typewriter');
             var cursor = document.getElementById('typingCursor');
             var i = 0;
