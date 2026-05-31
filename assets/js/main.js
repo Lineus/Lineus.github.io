@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 拦截文章链接，实现 Markdown 渲染
     initArticleLinks();
+    
+    // 禁止复制内容
+    initDisableCopy();
 });
 
 // ==================== 主题切换 ====================
@@ -161,6 +164,57 @@ function initArticleLinks() {
     });
 }
 
+// ==================== 禁止复制 ====================
+
+function initDisableCopy() {
+    // 禁止右键菜单
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 禁止复制
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 禁止剪切
+    document.addEventListener('cut', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 禁止粘贴
+    document.addEventListener('paste', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // 禁止键盘快捷键复制 (Ctrl+C / Ctrl+U / Ctrl+S / F12)
+    document.addEventListener('keydown', function(e) {
+        if (
+            e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S') ||
+            e.key === 'F12'
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 对于文章模态框内的内容，也禁止选择
+    const style = document.createElement('style');
+    style.textContent = `
+        .article-modal .modal-body {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 // 显示加载遮罩
 function showLoadingOverlay() {
     let overlay = document.getElementById('loading-overlay');
@@ -236,6 +290,28 @@ function showErrorModal(message) {
 function closeModal(modal) {
     modal.style.display = 'none';
     document.body.style.overflow = ''; // 恢复滚动
+}
+
+// 加载兴趣爱好文章（复用文章模态框）
+function loadHobbyArticle(url) {
+    showLoadingOverlay();
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(markdown => {
+            const htmlContent = marked.parse(markdown);
+            showArticleModal(htmlContent);
+            hideLoadingOverlay();
+        })
+        .catch(error => {
+            console.error('Error loading hobby article:', error);
+            hideLoadingOverlay();
+            showErrorModal('内容加载失败，请稍后重试');
+        });
 }
 
 // 访客统计优化 - 添加加载状态
