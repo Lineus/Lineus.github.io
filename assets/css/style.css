@@ -871,7 +871,7 @@ body {
     font-size: clamp(3rem, 12vw, 10rem);
     font-weight: 900;
     color: var(--text-color);
-    opacity: 0.035;
+    opacity: 0;
     pointer-events: none;
     z-index: 9998;
     user-select: none;
