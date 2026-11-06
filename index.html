@@ -7,6 +7,7 @@
     <title>Linus's Homepage</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/main.js" defer></script>
     <!-- 内联主题脚本：在页面渲染前立即应用保存的主题，防止闪烁 -->
     <script>
         (function() {
@@ -107,12 +108,12 @@
                     <div class="article-list">
                         <div class="article-item">
                             <span class="article-category">人文相关</span>
-                            <a href="/assets/articles/article1.md" class="article-btn">
+                            <a href="/assets/articles/article1.md" class="article-btn" data-article>
                                 <span class="btn-text">对现代社会和主体性的一些小思考</span>
                                 <span class="btn-date">最后更新于4.8.2026</span>
                                 <span class="btn-arrow">→</span>
                             </a>
-                            <a href="/assets/articles/article4.md" class="article-btn">
+                            <a href="/assets/articles/article4.md" class="article-btn" data-article>
                                 <span class="btn-text">一些随笔</span>
                                 <span class="btn-date">最后更新于5.27.2026</span>
                                 <span class="btn-arrow">→</span>
@@ -121,7 +122,7 @@
                         
                         <div class="article-item">
                             <span class="article-category">创业相关</span>
-                            <a href="/assets/articles/article2.md" class="article-btn">
+                            <a href="/assets/articles/article2.md" class="article-btn" data-article>
                                 <span class="btn-text">参访完校友总部经济园的观点整理</span>
                                 <span class="btn-date">最后更新与4.23.2026</span>
                                 <span class="btn-arrow">→</span>
@@ -130,7 +131,7 @@
 
                         <div class="article-item">
                             <span class="article-category">一些小诗</span>
-                            <a href="/assets/articles/article3.md" class="article-btn">
+                            <a href="/assets/articles/article3.md" class="article-btn" data-article>
                                 <span class="btn-text">这里是一些我写的小诗</span>
                                 <span class="btn-date">最后更新于5.27.2026</span>
                                 <span class="btn-arrow">→</span>
@@ -143,7 +144,10 @@
                 <section class="section card fade-in">
                     <h2 class="section-title">我的其他爱好</h2>
                     <ul class="list hobby-list">
-                        <li class="hobby-item" onclick="loadHobbyArticle('/assets/articles/article5.md')">🥁 打架子鼓</li>
+                        <li><a href="/assets/articles/article5.md" class="hobby-item" data-article>
+                            <span class="btn-text">🥁 打架子鼓</span>
+                            <span class="btn-arrow" aria-hidden="true">→</span>
+                        </a></li>
                         <li>✍️ 写点东西</li>
                         <li>🍺 喝啤酒</li>
                     </ul>
@@ -204,9 +208,19 @@
         </div>
     </footer>
 
-    <!-- Markdown 渲染库 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <dialog class="article-modal" id="article-modal" aria-labelledby="article-title">
+        <div class="modal-toolbar">
+            <h2 id="article-title"></h2>
+            <form method="dialog">
+                <button class="modal-close" type="submit" aria-label="关闭文章" autofocus>×</button>
+            </form>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-feedback">
+            <p role="status"></p>
+            <button class="modal-retry" type="button" hidden>重试</button>
+        </div>
+    </dialog>
     <!-- 内联主题切换函数 -->
     <script>
         function toggleTheme() {

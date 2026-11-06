@@ -281,27 +281,28 @@ body {
     font-weight: bold;
 }
 
-.hobby-list li::before {
-    content: '';
+.hobby-list li {
+    padding-left: 0;
 }
 
-/* 可点击的兴趣爱好项 */
+.hobby-list li::before {
+    content: none;
+}
+
 .hobby-item {
-    cursor: pointer;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 8px 12px;
     border-radius: 8px;
-    padding: 10px 16px !important;
-    margin: 0 -8px;
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 .hobby-item:hover {
     background: var(--hover-bg);
-    transform: translateX(5px);
-    color: var(--primary-color) !important;
-}
-
-.hobby-item:active {
-    transform: translateX(5px) scale(0.98);
+    color: var(--primary-color);
 }
 
 /* 标签样式 */
@@ -579,112 +580,114 @@ body {
 .fade-in:nth-child(3) { animation-delay: 0.3s; }
 .fade-in:nth-child(4) { animation-delay: 0.4s; }
 
-/* 加载遮罩 */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    backdrop-filter: blur(5px);
+/* 文章阅读器 */
+:root.reading {
+    overflow: hidden;
 }
 
-.loading-spinner {
-    text-align: center;
-    color: white;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 15px;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.loading-spinner p {
-    font-size: 1rem;
-    margin: 0;
-}
-
-/* 文章模态框 */
 .article-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: flex-start;
-    z-index: 10000;
-    padding: 40px 20px;
-    overflow-y: auto;
-    backdrop-filter: blur(8px);
-}
-
-.modal-content {
+    inset: 0;
+    width: min(48rem, calc(100% - 2rem));
+    max-height: calc(100% - 2rem);
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
     background: var(--modal-bg);
-    max-width: 800px;
-    width: 100%;
-    border-radius: 12px;
-    position: relative;
-    animation: modalSlideIn 0.3s ease;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 24px 80px rgb(0 0 0 / 35%);
 }
 
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.article-modal[open] {
+    animation: reader-in 220ms ease-out both;
+}
+
+.article-modal::backdrop {
+    background: rgb(5 13 25 / 70%);
+}
+
+@keyframes reader-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px clamp(16px, 5vw, 40px);
+    background: var(--modal-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-toolbar h2 {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.modal-close,
+.modal-retry {
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
 }
 
 .modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    background: var(--card-bg);
-    border-radius: 50%;
-    font-size: 1.8rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
-    transition: all 0.3s ease;
-    z-index: 1;
+    width: 44px;
+    padding: 0;
+    font-size: 1.5rem;
 }
 
-.modal-close:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: rotate(90deg);
+.modal-close:hover,
+.modal-retry:hover {
+    background: var(--hover-bg);
 }
 
 .modal-body {
-    padding: 40px;
-    line-height: 1.8;
-    color: var(--text-color);
+    padding: clamp(16px, 5vw, 40px);
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+    user-select: none;
+}
+
+.modal-body:empty {
+    padding: 0;
+}
+
+.modal-body > :first-child {
+    margin-top: 0;
+}
+
+.modal-feedback {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-inline: clamp(16px, 5vw, 40px);
+    color: var(--secondary-color);
+}
+
+.modal-feedback p:not(:empty) {
+    margin-block: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .article-modal[open] {
+        animation: none;
+    }
 }
 
 /* Markdown 渲染样式 */
@@ -830,19 +833,7 @@ body {
         flex-direction: column;
         gap: 20px;
     }
-    
-    .modal-body {
-        padding: 25px;
     }
-    
-    .modal-close {
-        top: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 1.5rem;
-    }
-}
 
 @media (max-width: 480px) {
     .header {
@@ -863,15 +854,7 @@ body {
         padding: 5px 10px;
         font-size: 0.85rem;
     }
-    
-    .article-modal {
-        padding: 20px 10px;
     }
-    
-    .modal-body {
-        padding: 20px;
-    }
-}
 
 /* ==================== 水印 ==================== */
 .watermark {
@@ -894,20 +877,4 @@ body {
     letter-spacing: 0.05em;
     white-space: nowrap;
     transition: color 0.3s ease;
-}
-
-/* ==================== 禁止复制 ==================== */
-body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* 模态框内容也禁止选择 */
-.modal-body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
