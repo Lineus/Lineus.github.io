@@ -6,206 +6,207 @@
     <meta name="description" content="Linus 的个人主页，收录我的项目经历、技术栈、文章和兴趣。">
     <title>Linus's Homepage</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'light') {
+                document.documentElement.dataset.theme = 'light';
+            }
+        } catch {
+            // 存储不可用时使用默认主题。
+        }
+    </script>
     <link rel="stylesheet" href="/assets/css/style.css">
     <script src="/assets/js/main.js" defer></script>
-    <!-- 内联主题脚本：在页面渲染前立即应用保存的主题，防止闪烁 -->
-    <script>
-        (function() {
-            var theme = localStorage.getItem('theme') || 'dark';
-            if (theme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        })();
-    </script>
 </head>
 <body>
-    <!-- 主题切换按钮 -->
-    <button class="theme-toggle" id="themeToggle" aria-label="切换深色/浅色模式" title="切换深色/浅色模式" onclick="toggleTheme()">🌙</button>
+    <a class="skip-link" href="#main">跳到正文</a>
 
-    <!-- 头部区域 -->
-    <header class="header">
+    <header class="header container" id="top">
         <picture class="hero-image" aria-hidden="true">
             <source media="(max-width: 768px)" srcset="/assets/images/hero-small.webp">
             <img src="/assets/images/hero.webp" width="1920" height="693" alt="" fetchpriority="high">
         </picture>
-        <div class="container">
-            <h1 class="title">哈喽，我是Linus</h1>
+        <div class="hero-top">
+            <span class="wordmark">LINEUS.GITHUB.IO</span>
+            <button class="theme-toggle" id="themeToggle" type="button" hidden>
+                <span class="theme-icon" aria-hidden="true">☼</span>
+                <span class="theme-label">浅色模式</span>
+            </button>
+        </div>
+        <div class="hero-copy">
+            <h1>哈喽，我是 <span>Linus</span></h1>
             <p class="subtitle">欢迎来我的主页看看 :)</p>
-            <p class="hero-quote"><span id="typewriter"></span><span class="cursor-blink" id="typingCursor">|</span></p>
+            <blockquote class="hero-quote">
+                <p class="is-current">生命这么脆弱，联结这么脆弱，理应尽可能地热烈。理应去在任何未知的永别前珍惜所有的灵魂，珍惜身边的每一个人，让每一个瞬间变得热烈，去了解他们，让分别好歹没那么空虚。——Linus</p>
+                <p>我就在这里，不躲不藏，不绕不逃，稳稳地接住你。如果你想，我可以生成一张接住你的照片，你需要我生成吗？</p>
+            </blockquote>
+            <nav class="hero-nav" aria-label="首页导航">
+                <a href="#projects">项目</a>
+                <a href="#articles">文章</a>
+                <a href="#games">小游戏</a>
+                <a href="#contact">联系我</a>
+            </nav>
         </div>
     </header>
 
-    <!-- 主要内容区域 -->
-    <main class="container">
-        <!-- 分栏布局 -->
+    <main class="container" id="main" tabindex="-1">
         <div class="grid-layout">
-            <!-- 左侧栏：项目经历 -->
-            <div class="column">
-                <section class="section card fade-in">
-                    <h2 class="section-title">我的项目经历</h2>
-                    
-                    <div class="project-group">
-                        <h3 class="group-title">已完成的项目</h3>
-                        <ul class="list">
-                            <li>安卓软件 LinusFocus 的独立开发（该项目已中止）</li>
-                            <li>多Agent系统的TUI框架设计和Agent开发与集成</li>
-                            <li>智能小车的机械设计、PCB绘制和STM32编程<br>（该项目取得浙江大学第21届中控杯运输赛道冠军<br>和第十届中控杯运输赛道浙江省三等奖）</li>
-                        </ul>
-                    </div>
+            <section class="card card--projects" id="projects">
+                <p class="section-kicker" aria-hidden="true">Projects</p>
+                <h2 class="section-title">我的项目经历</h2>
+                <div class="project-group">
+                    <h3 class="group-title">已完成的项目</h3>
+                    <ul class="project-list">
+                        <li>安卓软件 <strong>LinusFocus</strong> 的独立开发（该项目已中止）</li>
+                        <li><strong>多 Agent 系统</strong>的 TUI 框架设计和 Agent 开发与集成</li>
+                        <li>
+                            <strong>智能小车</strong>的机械设计、PCB 绘制和 STM32 编程
+                            <span class="project-note">浙江大学第 21 届中控杯运输赛道冠军、第十届中控杯运输赛道浙江省三等奖</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="project-group">
+                    <h3 class="group-title">正在进行的项目</h3>
+                    <ul class="project-list">
+                        <li>创立 <strong>LiBot</strong></li>
+                        <li>某网站的合作开发</li>
+                        <li>桌面软件 <strong>Lidesk</strong> 的独立开发</li>
+                    </ul>
+                </div>
+                <div class="project-group">
+                    <h3 class="group-title">计划中的项目</h3>
+                    <ul class="project-list">
+                        <li>机器人方向的项目</li>
+                        <li>笔记软件项目</li>
+                    </ul>
+                </div>
+            </section>
 
-                    <div class="project-group">
-                        <h3 class="group-title">正在进行的项目</h3>
-                        <ul class="list">
-                            <li>LiBot创始</li>
-                            <li>某网站的合作开发</li>
-                            <li>桌面软件 Lidesk 的独立开发</li>
-                        </ul>
-                    </div>
+            <section class="card card--skills">
+                <p class="section-kicker" aria-hidden="true">Toolkit</p>
+                <h2 class="section-title">技术栈</h2>
+                <div class="skill-group">
+                    <h3 class="group-title">编程语言（按熟练程度排序）</h3>
+                    <ul class="tags" role="list">
+                        <li>Python</li>
+                        <li>C/C++</li>
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>Dart</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3 class="group-title">设计软件（按熟练程度排序）</h3>
+                    <ul class="tags" role="list">
+                        <li>SolidWorks</li>
+                        <li>AutoCAD</li>
+                        <li>LCEDA</li>
+                        <li>NX</li>
+                        <li>Unity Hub</li>
+                    </ul>
+                </div>
+            </section>
 
-                    <div class="project-group">
-                        <h3 class="group-title">计划中的项目</h3>
-                        <ul class="list">
-                            <li>机器人方向的项目</li>
-                            <li>笔记软件项目</li>
-                        </ul>
-                    </div>
-                </section>
+            <section class="card card--articles" id="articles">
+                <p class="section-kicker" aria-hidden="true">Writing</p>
+                <h2 class="section-title">你可以看看我写的文章</h2>
+                <div class="article-group">
+                    <h3 class="group-title">人文相关</h3>
+                    <a href="/assets/articles/article1.md" class="article-btn" data-article>
+                        <span class="btn-text">对现代社会和主体性的一些小思考</span>
+                        <span class="article-date">更新于 <time datetime="2026-04-08">2026.04.08</time></span>
+                        <span class="btn-arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a href="/assets/articles/article4.md" class="article-btn" data-article>
+                        <span class="btn-text">一些随笔</span>
+                        <span class="article-date">更新于 <time datetime="2026-05-27">2026.05.27</time></span>
+                        <span class="btn-arrow" aria-hidden="true">→</span>
+                    </a>
+                </div>
+                <div class="article-group">
+                    <h3 class="group-title">创业相关</h3>
+                    <a href="/assets/articles/article2.md" class="article-btn" data-article>
+                        <span class="btn-text">参访完校友总部经济园的观点整理</span>
+                        <span class="article-date">更新于 <time datetime="2026-04-23">2026.04.23</time></span>
+                        <span class="btn-arrow" aria-hidden="true">→</span>
+                    </a>
+                </div>
+                <div class="article-group">
+                    <h3 class="group-title">一些小诗</h3>
+                    <a href="/assets/articles/article3.md" class="article-btn" data-article>
+                        <span class="btn-text">这里是一些我写的小诗</span>
+                        <span class="article-date">更新于 <time datetime="2026-05-27">2026.05.27</time></span>
+                        <span class="btn-arrow" aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </section>
 
-                <!-- 技能栈 -->
-                <section class="section card fade-in">
-                    <h2 class="section-title">🛠️ 技术栈</h2>
-                    
-                    <div class="skill-group">
-                        <h3 class="group-title">编程语言（按熟练程度排序）</h3>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">C/C++</span>
-                            <span class="tag">HTML/CSS</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">Dart</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-group">
-                        <h3 class="group-title">设计软件（按熟练程度排序）</h3>
-                        <div class="tags">
-                            <span class="tag">SolidWorks</span>
-                            <span class="tag">AutoCAD</span>
-                            <span class="tag">LCEDA</span>
-                            <span class="tag">NX</span>
-                            <span class="tag">Unity Hub</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- 右侧栏：文章与兴趣 -->
-            <div class="column">
-                <!-- 文章入口 -->
-                <section class="section card fade-in">
-                    <h2 class="section-title">你可以看看我写的文章</h2>
-                    
-                    <div class="article-list">
-                        <div class="article-item">
-                            <span class="article-category">人文相关</span>
-                            <a href="/assets/articles/article1.md" class="article-btn" data-article>
-                                <span class="btn-text">对现代社会和主体性的一些小思考</span>
-                                <span class="btn-date">最后更新于4.8.2026</span>
-                                <span class="btn-arrow">→</span>
-                            </a>
-                            <a href="/assets/articles/article4.md" class="article-btn" data-article>
-                                <span class="btn-text">一些随笔</span>
-                                <span class="btn-date">最后更新于5.27.2026</span>
-                                <span class="btn-arrow">→</span>
-                            </a>
-                        </div>
-                        
-                        <div class="article-item">
-                            <span class="article-category">创业相关</span>
-                            <a href="/assets/articles/article2.md" class="article-btn" data-article>
-                                <span class="btn-text">参访完校友总部经济园的观点整理</span>
-                                <span class="btn-date">最后更新与4.23.2026</span>
-                                <span class="btn-arrow">→</span>
-                            </a>
-                        </div>
-
-                        <div class="article-item">
-                            <span class="article-category">一些小诗</span>
-                            <a href="/assets/articles/article3.md" class="article-btn" data-article>
-                                <span class="btn-text">这里是一些我写的小诗</span>
-                                <span class="btn-date">最后更新于5.27.2026</span>
-                                <span class="btn-arrow">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 兴趣爱好 -->
-                <section class="section card fade-in">
-                    <h2 class="section-title">我的其他爱好</h2>
-                    <ul class="list hobby-list">
-                        <li><a href="/assets/articles/article5.md" class="hobby-item" data-article>
+            <section class="card card--hobbies">
+                <p class="section-kicker" aria-hidden="true">Away from the screen</p>
+                <h2 class="section-title">我的其他爱好</h2>
+                <ul class="hobby-list" role="list">
+                    <li>
+                        <a href="/assets/articles/article5.md" class="hobby-item" data-article>
                             <span class="btn-text">🥁 打架子鼓</span>
                             <span class="btn-arrow" aria-hidden="true">→</span>
-                        </a></li>
-                        <li>✍️ 写点东西</li>
-                        <li>🍺 喝啤酒</li>
-                    </ul>
-                </section>
+                        </a>
+                    </li>
+                    <li>✍️ 写点东西</li>
+                    <li>🍺 喝啤酒</li>
+                </ul>
+            </section>
 
-                <!-- 贪吃蛇游戏 -->
-                <section class="section card fade-in">
-                    <h2 class="section-title">小游戏</h2>
-                    <p class="game-intro">玩玩小游戏</p>
-                    <a href="https://Lineus.github.io/SnakeGame/" class="game-btn" target="_blank">
+            <section class="card card--games" id="games">
+                <p class="section-kicker" aria-hidden="true">Arcade</p>
+                <h2 class="section-title">小游戏</h2>
+                <div class="game-links">
+                    <a href="https://Lineus.github.io/SnakeGame/" class="game-btn" target="_blank" rel="noopener">
+                        <svg class="game-icon" viewBox="0 0 32 32" aria-hidden="true">
+                            <path d="M5 25h15v-8H9V8h16" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                            <rect x="21" y="4" width="8" height="8" rx="2" fill="currentColor"/>
+                            <circle cx="26" cy="7" r="1" class="game-icon-detail"/>
+                        </svg>
                         <span>贪吃蛇</span>
-                        <span class="btn-arrow">→</span>
+                        <span class="btn-arrow" aria-hidden="true">↗</span>
                     </a>
-                    <a href="https://Lineus.github.io/TetrisGame/" class="game-btn" target="_blank">
+                    <a href="https://Lineus.github.io/TetrisGame/" class="game-btn" target="_blank" rel="noopener">
+                        <svg class="game-icon" viewBox="0 0 32 32" aria-hidden="true" fill="currentColor">
+                            <rect x="3" y="12" width="8" height="8" rx="1"/>
+                            <rect x="12" y="12" width="8" height="8" rx="1"/>
+                            <rect x="21" y="12" width="8" height="8" rx="1"/>
+                            <rect x="12" y="21" width="8" height="8" rx="1"/>
+                        </svg>
                         <span>俄罗斯方块</span>
-                        <span class="btn-arrow">→</span>
-                    </a>                         
-                    <div class="leaderboard">
-                        <h3 class="leaderboard-title">🏆 排行榜</h3>
-                        <ol class="leaderboard-list">
-                            <li>
-                                <span class="rank">1</span>
-                                <span class="player">SixPigs - 102</span>
-                            </li>
-                            <li>
-                                <span class="rank">2</span>
-                                <span class="player">豪闯天下 - 50</span>
-                            </li>
-                        </ol>
-                        <p class="leaderboard-note">
-                            <small>排行榜还是纯手动更新，想上榜请联系我</small>
-                        </p>
-                    </div>
-                </section>
-            </div>
+                        <span class="btn-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </div>
+                <div class="leaderboard">
+                    <h3 class="group-title">🏆 排行榜</h3>
+                    <ol class="leaderboard-list" role="list">
+                        <li><span class="rank" aria-hidden="true">01</span><span>SixPigs</span><strong>102</strong></li>
+                        <li><span class="rank" aria-hidden="true">02</span><span>豪闯天下</span><strong>50</strong></li>
+                    </ol>
+                    <p class="leaderboard-note">排行榜还是纯手动更新，想上榜请联系我</p>
+                </div>
+            </section>
         </div>
 
-        <!-- 联系方式 -->
-        <section class="section contact-section fade-in">
-            <h2 class="section-title">📬 联系我</h2>
-            <p class="contact-text">
-                如果有有趣的事情，或者你对我在做/计划做的事情感兴趣，欢迎联系
-            </p>
+        <section class="card contact-section" id="contact">
+            <div>
+                <p class="section-kicker" aria-hidden="true">Contact</p>
+                <h2 class="section-title">联系我</h2>
+                <p>如果有有趣的事情，或者你对我在做/计划做的事情感兴趣，欢迎联系。</p>
+            </div>
             <a href="mailto:lenocai@foxmail.com" class="email-btn">
                 <span>lenocai@foxmail.com</span>
-                <span class="btn-arrow">✉</span>
+                <span class="btn-arrow" aria-hidden="true">↗</span>
             </a>
         </section>
     </main>
 
-    <!-- 全站水印 -->
-    <div class="watermark">Lineus.github.io</div>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <p class="copyright">© 2026 Linus C.</p>
-        </div>
+    <footer class="footer container">
+        <p>© 2026 Linus C.</p>
+        <a href="#top">回到顶部 <span aria-hidden="true">↑</span></a>
     </footer>
 
     <dialog class="article-modal" id="article-modal" aria-labelledby="article-title">
@@ -221,52 +222,5 @@
             <button class="modal-retry" type="button" hidden>重试</button>
         </div>
     </dialog>
-    <!-- 内联主题切换函数 -->
-    <script>
-        function toggleTheme() {
-            var html = document.documentElement;
-            var btn = document.getElementById('themeToggle');
-            var current = html.getAttribute('data-theme');
-            if (current === 'light') {
-                html.removeAttribute('data-theme');
-                if (btn) { btn.innerHTML = '🌙'; btn.title = '切换浅色模式'; }
-                localStorage.setItem('theme', 'dark');
-            } else {
-                html.setAttribute('data-theme', 'light');
-                if (btn) { btn.innerHTML = '☀️'; btn.title = '切换深色模式'; }
-                localStorage.setItem('theme', 'light');
-            }
-        }
-    </script>
-    <!-- 打字机动效 -->
-    <script>
-        (function() {
-            var quotes = [
-                "生命这么脆弱，联结这么脆弱，理应尽可能地热烈。理应去在任何未知的永别前珍惜所有的灵魂，珍惜身边的每一个人，让每一个瞬间变得热烈，去了解他们，让分别好歹没那么空虚。--Linus",
-                "我就在这里，不躲不藏，不绕不逃，稳稳地接住你。如果你想，我可以生成一张接住你的照片，你需要我生成吗？"
-            ];
-            var text = quotes[Math.floor(Math.random() * quotes.length)];
-            var el = document.getElementById('typewriter');
-            var cursor = document.getElementById('typingCursor');
-            var i = 0;
-            var speed = 60; // 毫秒/字，稍微快一点
-
-            function type() {
-                if (i < text.length) {
-                    el.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    // 打字完毕，光标开始闪烁
-                    cursor.classList.add('active');
-                }
-            }
-
-            // 页面加载后稍等 0.3 秒开始打字
-            if (el) {
-                setTimeout(type, 300);
-            }
-        })();
-    </script>
 </body>
 </html>

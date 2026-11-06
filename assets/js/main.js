@@ -1,14 +1,32 @@
 const themeToggle = document.getElementById('themeToggle');
+const root = document.documentElement;
 
 function syncThemeButton() {
-    const light = document.documentElement.dataset.theme === 'light';
-    const label = light ? '切换深色模式' : '切换浅色模式';
-    themeToggle.textContent = light ? '☀️' : '🌙';
-    themeToggle.title = label;
-    themeToggle.setAttribute('aria-label', label);
+    const light = root.dataset.theme === 'light';
+    themeToggle.querySelector('.theme-icon').textContent = light ? '☾' : '☼';
+    themeToggle.querySelector('.theme-label').textContent = light ? '深色模式' : '浅色模式';
 }
 
 syncThemeButton();
+themeToggle.hidden = false;
+themeToggle.addEventListener('click', () => {
+    const light = root.dataset.theme !== 'light';
+    if (light) {
+        root.dataset.theme = 'light';
+    } else {
+        delete root.dataset.theme;
+    }
+    syncThemeButton();
+    try {
+        localStorage.setItem('theme', light ? 'light' : 'dark');
+    } catch {
+        // 存储不可用时仍可切换当前页面的主题。
+    }
+});
+
+const quotes = document.querySelectorAll('.hero-quote p');
+const currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
+quotes.forEach(quote => quote.classList.toggle('is-current', quote === currentQuote));
 
 const articleDialog = document.getElementById('article-modal');
 if (typeof articleDialog.showModal === 'function') {
@@ -64,7 +82,7 @@ if (typeof articleDialog.showModal === 'function') {
             title.textContent = link.querySelector('.btn-text').textContent;
             articleDialog.showModal();
             articleDialog.scrollTop = 0;
-            document.documentElement.classList.add('reading');
+            root.classList.add('reading');
             loadArticle();
         });
     });
@@ -86,7 +104,7 @@ if (typeof articleDialog.showModal === 'function') {
         if (articleDialog.open) return;
         request?.abort();
         content.replaceChildren();
-        document.documentElement.classList.remove('reading');
+        root.classList.remove('reading');
         opener?.focus({ preventScroll: true });
     });
 
