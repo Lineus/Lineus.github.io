@@ -47,7 +47,7 @@ body {
     color: var(--text-color);
     background:
         linear-gradient(var(--body-mask), var(--body-mask)),
-        url('../images/body_background.jpg') center/cover fixed no-repeat;
+        url('../images/body-background.webp') center/cover no-repeat;
     background-color: var(--bg-color);
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -61,7 +61,7 @@ body {
 
 /* 头部样式 */
 .header {
-    background: url('../images/title_background.jpg') center/cover no-repeat;
+    background: #142333;
     color: white;
     padding: 80px 0 60px;
     text-align: center;
@@ -80,6 +80,7 @@ body {
     box-shadow: var(--shadow-hover);
 }
 
+.hero-image,
 .header::before {
     content: '';
     position: absolute;
@@ -87,6 +88,16 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header::before {
+    z-index: 1;
     background: var(--header-mask);
     transition: background 0.3s ease;
 }
@@ -777,6 +788,10 @@ body {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+    body {
+        background-image: linear-gradient(var(--body-mask), var(--body-mask)), url('../images/body-background-small.webp');
+    }
+
     .header {
         margin: 15px auto 0;
         border-radius: 8px;
