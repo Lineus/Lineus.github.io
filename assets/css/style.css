@@ -265,14 +265,15 @@ section[id] {
     letter-spacing: -0.02em;
 }
 
-.group-title {
+.group-title,
+.project-content > h3 {
     margin-bottom: 8px;
     color: var(--primary-color);
     font-size: 0.9rem;
     font-weight: 600;
 }
 
-.project-group + .project-group,
+.project-content > h3:not(:first-child),
 .skill-group + .skill-group,
 .article-group + .article-group {
     margin-top: 15px;
@@ -280,23 +281,22 @@ section[id] {
     border-top: 1px solid var(--border-color);
 }
 
-.project-list {
+.project-content > ul {
     display: grid;
     gap: 5px;
     padding-left: 1.2em;
     color: var(--secondary-color);
 }
 
-.project-list li::marker {
+.project-content > ul > li::marker {
     color: var(--primary-color);
 }
 
-.project-list strong {
+.project-content > ul strong {
     color: var(--text-color);
 }
 
-.project-note {
-    display: block;
+.project-content > ul > li > p + p {
     margin-top: 3px;
     font-size: 0.84rem;
 }

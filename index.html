@@ -1,3 +1,6 @@
+---
+layout: none
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -54,35 +57,9 @@
             <section class="card card--projects" id="projects">
                 <p class="section-kicker" aria-hidden="true">Projects</p>
                 <h2 class="section-title">我的项目经历</h2>
-                <div class="project-group">
-                    <h3 class="group-title">已完成的项目</h3>
-                    <ul class="project-list">
-                        <li>安卓软件 <strong>LinusFocus</strong> 的独立开发（该项目已中止）</li>
-                        <li><strong>多 Agent 系统</strong>的 TUI 框架设计和 Agent 开发与集成</li>
-                        <li>
-                            <strong>智能小车</strong>的机械设计、PCB 绘制和 STM32 编程
-                            <span class="project-note">浙江大学第 21 届中控杯运输赛道冠军、第十届中控杯运输赛道浙江省三等奖</span>
-                        </li>
-                        <li>
-                            创立 <strong>LiBot</strong>（已中止）
-                            <span class="project-note">获浙江大学 Spark 创业点子秀最具投资价值奖、浙江大学管理学院 2026 BEST 科创路演未来奖</span>
-                        </li>
-                        <li><strong>工程教育高级班 2026 级报名网站</strong>的合作开发</li>
-                    </ul>
-                </div>
-                <div class="project-group">
-                    <h3 class="group-title">正在进行的项目</h3>
-                    <ul class="project-list">
-                        <li>桌面软件 <strong>Lidesk</strong> 的独立开发</li>
-                        <li><strong>工创赛救援机器人</strong>的机械与算法设计</li>
-                    </ul>
-                </div>
-                <div class="project-group">
-                    <h3 class="group-title">计划中的项目</h3>
-                    <ul class="project-list">
-                        <li>机器人方向的项目</li>
-                        <li>笔记软件项目</li>
-                    </ul>
+                <div class="project-content">
+                    {% capture project_markdown %}{% include projects.md %}{% endcapture %}
+                    {{ project_markdown | markdownify }}
                 </div>
             </section>
 
@@ -117,12 +94,12 @@
                 <div class="article-group">
                     <h3 class="group-title">人文相关</h3>
                     <a href="/assets/articles/article1.md" class="article-btn" data-article>
-                        <span class="btn-text">对现代社会和主体性的一些小思考</span>
+                        <span class="btn-text">流动的现代社会与主体性</span>
                         <span class="article-date">更新于 <time datetime="2026-04-08">2026.04.08</time></span>
                         <span class="btn-arrow" aria-hidden="true">→</span>
                     </a>
                     <a href="/assets/articles/article4.md" class="article-btn" data-article>
-                        <span class="btn-text">一些随笔</span>
+                        <span class="btn-text">己与己，神与神</span>
                         <span class="article-date">更新于 <time datetime="2026-05-27">2026.05.27</time></span>
                         <span class="btn-arrow" aria-hidden="true">→</span>
                     </a>
@@ -130,7 +107,7 @@
                 <div class="article-group">
                     <h3 class="group-title">创业相关</h3>
                     <a href="/assets/articles/article2.md" class="article-btn" data-article>
-                        <span class="btn-text">参访完校友总部经济园的观点整理</span>
+                        <span class="btn-text">眼镜与咖啡</span>
                         <span class="article-date">更新于 <time datetime="2026-04-23">2026.04.23</time></span>
                         <span class="btn-arrow" aria-hidden="true">→</span>
                     </a>
@@ -138,7 +115,7 @@
                 <div class="article-group">
                     <h3 class="group-title">一些小诗</h3>
                     <a href="/assets/articles/article3.md" class="article-btn" data-article>
-                        <span class="btn-text">这里是一些我写的小诗</span>
+                        <span class="btn-text">给我</span>
                         <span class="article-date">更新于 <time datetime="2026-05-27">2026.05.27</time></span>
                         <span class="btn-arrow" aria-hidden="true">→</span>
                     </a>
